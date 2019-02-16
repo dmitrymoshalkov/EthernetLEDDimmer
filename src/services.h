@@ -65,6 +65,14 @@ String mqttCodeStr(int code) {
 
 void sendDataToMQTT();
 
+
+void resetBoard()
+{
+  while (true) {
+    delay(1);
+  }
+}
+
 void callback(char* topic, byte* payload, unsigned int length) {
 
   String msg, strtopic, topicname1;
@@ -134,9 +142,7 @@ for (int i = 0; i < NUM_CHANNELS-1; i++)
               }
   } else if (strtopic == resetTopic)
   {
-    while (true) {
-      delay(1);
-    }
+             resetBoard();
   }
 
 sendDataToMQTT();
@@ -256,6 +262,7 @@ void setColorState(uint8_t state)
   }
 
 }
+
 
 
 

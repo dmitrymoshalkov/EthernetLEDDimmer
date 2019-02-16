@@ -89,8 +89,8 @@ TCCR2B = TCCR2B & B11111000 | B00000001;
 
 
 
-EEPROM_readAnything(0, values);
-EEPROM_readAnything(4, target_values);
+//EEPROM_readAnything(0, values);
+//EEPROM_readAnything(4, target_values);
 
 bCurrentBrightness = target_values[0];
 
@@ -151,8 +151,8 @@ void updateLights() {
       analogWrite(channels[i], pow (2, (values[i] / R)) - 1);
     } else {
       analogWrite(channels[i], 0);
-      	    	EEPROM_writeAnything(0, values);
-      	    	EEPROM_writeAnything(4, target_values);
+      	    	//EEPROM_writeAnything(0, values);
+      	    	//EEPROM_writeAnything(4, target_values);
     }
   }
 

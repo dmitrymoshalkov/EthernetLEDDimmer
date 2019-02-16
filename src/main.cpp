@@ -19,7 +19,10 @@
 
 #include <Encoder.h>
 #include <Bounce2.h>
-#include "EEPROMAnything.h"
+//#include "EEPROMAnything.h"
+
+uint8_t mqttUnaviable = 0;
+
 
 //#include <StandardCplusplus.h>
 
@@ -75,7 +78,7 @@ long lastMQTTCheckUpdate = 0;
 
 bool bDHCPError = false;
 
-void(* resetFunc) (void) = 0;
+
 
 void setup() {
 
@@ -152,9 +155,7 @@ if ( Ethernet.begin(mac) == 0)
   delay(1000);
   setColorState(3);
 
-  while (true) {
-    delay(1);
-  }
+  resetBoard();
 
 
 }
@@ -167,7 +168,7 @@ if ( Ethernet.begin(mac) == 0)
 
    setupMQTT();
 
-     setColorState(1);
+   setColorState(1);
 
      //Enable watchdog timer
      	wdt_enable(WDTO_8S);
@@ -182,9 +183,7 @@ void loop() {
         //Serial.println("Error: renewed fail");
              setColorState(2);
              delay(1000);
-             while (true) {
-               delay(1);
-             }
+             resetBoard();
         break;
 
       case 2:
@@ -200,9 +199,7 @@ void loop() {
         //Serial.println("Error: rebind fail");
              setColorState(2);
              delay(1000);
-             while (true) {
-               delay(1);
-             }
+             resetBoard();
         break;
 
       case 4:
@@ -245,13 +242,21 @@ void loop() {
     if( (currentCheckMQTTMillis - lastMQTTCheckUpdate ) > MQTTCHECKINTERVAL )
     {
        checkMQTT();
-       
+
        if (mqttAPI.connected())
        {
          setColorState(0);
+         mqttUnaviable =0;
+
        } else if (!bDHCPError)
        {
            setColorState(3);
+           mqttUnaviable++;
+
+           if (mqttUnaviable > 21)
+           {
+              resetBoard();
+           }
        }
 
          lastMQTTCheckUpdate = currentCheckMQTTMillis;
