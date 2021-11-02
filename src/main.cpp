@@ -64,6 +64,17 @@ byte values[3] = {100,100,50};
 
 Encoder knob(KNOB_ENC_PIN_2, KNOB_ENC_PIN_1);
 
+//************************** Just Some basic Definitions used for the Up Time LOgger ************//
+long Day=0;
+int Hour =0;
+int Minute=0;
+int Second=0;
+int SecondStamp=0;
+int Once=0;
+
+void uptime();
+
+
 
 #include "services.h"
 #include "lightcontrol.h"
@@ -275,7 +286,50 @@ void loop() {
 
     //MQTTtimer.run();
 
+    uptime();
+
     //reset watchdog timer
     wdt_reset();
+
+}
+
+
+
+//************************ Uptime Code - Makes a count of the total up time since last start ****************//
+//It will work for any main loop's, that loop moret han twice a second: not good for long delays etc
+void uptime(){
+//** Checks For a Second Change *****//
+if(millis()%1000<=500&&Once==0){
+SecondStamp=1;
+Once=1;
+}
+//** Makes Sure Second Count doesnt happen more than once a Second **//
+if(millis()%1000>500){
+Once=0;
+}
+
+
+
+
+                         if(SecondStamp==1){
+                           Second++;
+                           SecondStamp=0;
+                           //print_Uptime();
+
+                         if (Second==60){
+                          Minute++;
+                          Second=0;
+                          if (Minute==60){
+                          Minute=0;
+                          Hour++;
+
+                         if (Hour==24){
+                          Hour=0;
+                          Day++;
+                         }
+                         }
+                         }
+                         }
+
 
 }
