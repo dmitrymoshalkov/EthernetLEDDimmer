@@ -175,12 +175,12 @@ void checkMQTT()
       {
 
 
-          // String subTopic = MQTTtopic + "/cmd";
-           // mqttAPI.subscribe(subTopic.c_str());
-           // subTopic = MQTTtopic + "/bright";
-           // mqttAPI.subscribe(subTopic.c_str());
-           // subTopic = MQTTtopic + "/reset";
-           // mqttAPI.subscribe(subTopic.c_str());
+           String subTopic = MQTTtopic + "/cmd";
+            mqttAPI.subscribe(subTopic.c_str());
+            subTopic = MQTTtopic + "/bright";
+            mqttAPI.subscribe(subTopic.c_str());
+            subTopic = MQTTtopic + "/reset";
+            mqttAPI.subscribe(subTopic.c_str());
 
       }
       #ifdef NDEBUG
@@ -195,8 +195,6 @@ void checkMQTT()
 
 bool mqttPublish(String topic, String data) {
 yield();
-
-
   if (MQTTtopic.length()) topic = MQTTtopic + "/" + topic;
   return mqttAPI.publish(topic.c_str(), data.c_str(), true);
 }
@@ -232,8 +230,46 @@ void sendDataToMQTT() {
         Serial.println( "answer: " +  mqttCodeStr(mqttAPI.state()));
       #endif
   }
-  
 }
+
+void setColorState(uint8_t state)
+{
+  switch (state)
+  {
+    case 0:
+    {
+      digitalWrite(LED_BLUE,HIGH);
+      digitalWrite(LED_GREEN,LOW);
+      digitalWrite(LED_RED,HIGH);
+    }
+    break;
+    case 1:
+    {
+      digitalWrite(LED_BLUE,LOW);
+      digitalWrite(LED_GREEN,HIGH);
+      digitalWrite(LED_RED,HIGH);
+    }
+
+    break;
+    case 2:
+    {
+      digitalWrite(LED_BLUE,HIGH);
+      digitalWrite(LED_GREEN,HIGH);
+      digitalWrite(LED_RED,LOW);
+    }
+    break;
+    case 3:
+    {
+      digitalWrite(LED_BLUE,HIGH);
+      digitalWrite(LED_GREEN,HIGH);
+      digitalWrite(LED_RED,HIGH);
+    }
+    break;
+  }
+
+}
+
+
 
 
 

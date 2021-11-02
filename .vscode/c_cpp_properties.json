@@ -14,6 +14,9 @@
                 "C:/Users/Dmitr/.platformio/lib/Ethernet/src",
                 "C:/Users/Dmitr/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                 "C:/Users/Dmitr/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "z:/Documents/PlatformIO/Projects/EthernetLEDDimmer/.pio/libdeps/sensebendermicro8MHz/Encoder",
+                "z:/Documents/PlatformIO/Projects/EthernetLEDDimmer/.pio/libdeps/sensebendermicro8MHz/Encoder/utility",
+                "z:/Documents/PlatformIO/Projects/EthernetLEDDimmer/.pio/libdeps/sensebendermicro8MHz/Bounce2/src",
                 "z:/Documents/PlatformIO/Projects/EthernetLEDDimmer/.pio/libdeps/sensebendermicro8MHz/SimpleTimer_ID419",
                 "C:/Users/Dmitr/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/Dmitr/.platformio/packages/framework-arduino-avr/variants/standard",
@@ -42,6 +45,9 @@
                     "C:/Users/Dmitr/.platformio/lib/Ethernet/src",
                     "C:/Users/Dmitr/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                     "C:/Users/Dmitr/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "z:/Documents/PlatformIO/Projects/EthernetLEDDimmer/.pio/libdeps/sensebendermicro8MHz/Encoder",
+                    "z:/Documents/PlatformIO/Projects/EthernetLEDDimmer/.pio/libdeps/sensebendermicro8MHz/Encoder/utility",
+                    "z:/Documents/PlatformIO/Projects/EthernetLEDDimmer/.pio/libdeps/sensebendermicro8MHz/Bounce2/src",
                     "z:/Documents/PlatformIO/Projects/EthernetLEDDimmer/.pio/libdeps/sensebendermicro8MHz/SimpleTimer_ID419",
                     "C:/Users/Dmitr/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "C:/Users/Dmitr/.platformio/packages/framework-arduino-avr/variants/standard",
@@ -63,7 +69,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=50100",
+                "PLATFORMIO=50202",
                 "ARDUINO_ARCH_AVR",
                 "ARDUINO_AVR_PRO",
                 "F_CPU=8000000L",
